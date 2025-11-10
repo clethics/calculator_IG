@@ -1388,6 +1388,7 @@
                 }
                 
                 // 기준점을 소수점 6번째 자리에서 반올림하여 5번째 자리까지 표시
+                result = Number((result + Number.EPSILON).toFixed(8));
                 baseScore = Math.round(baseScore * 100000) / 100000;
                 finalScore = Math.round(finalScore * 100) / 100;
                 baseScore = parseFloat(baseScore.toFixed(5));
