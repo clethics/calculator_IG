@@ -1241,7 +1241,7 @@
                             const calculatedScore = studentPerfScore * (listeningAvg / perfExcludingListeningAvg);
                             result = calculatedScore * recognitionRate;
                         }
-                    } else if (currentExamType === 'midterm') {
+} else if (currentExamType === 'midterm') {
                         if (currentMethod === 'final-score') {
                             const midtermAvg = parseFloat(document.getElementById('midterm-avg').value);
                             const finalScore = parseFloat(document.getElementById('final-score').value);
@@ -1253,14 +1253,20 @@
                             const midtermAvg = parseFloat(document.getElementById('midterm-avg').value);
                             const performanceScore = parseFloat(document.getElementById('calculated-student-performance-avg').value);
                             
-                            // 수행평가 평균을 자동으로 계산
-                            const performanceAvg = calculateClassPerformanceAverage();
-                            
-                            if (performanceAvg === 0) {
+                            let classAvgTotal = 0;
+                            let classAvgCount = 0;
+                            for (let i = 1; i <= dropdownPerformanceCounter; i++) {
+                                const classAvgEl = document.getElementById(`dropdown-perf-class-${i}`);
+                                if (classAvgEl && classAvgEl.value) {
+                                    classAvgTotal += parseFloat(classAvgEl.value);
+                                    classAvgCount++;
+                                }
+                            }
+                            if (classAvgCount === 0) {
                                 alert('수행평가 전체 평균을 계산할 수 없습니다. 평균 점수 관리에서 수행평가 영역을 입력해주세요.');
                                 return;
                             }
-                            
+                            const performanceAvg = classAvgTotal / classAvgCount;
                             const calculatedScore = (performanceScore / performanceAvg) * midtermAvg;
                             result = calculatedScore * recognitionRate;
                         }
@@ -1276,13 +1282,23 @@
                             const finalAvg = parseFloat(document.getElementById('final-avg').value);
                             const performanceScore = parseFloat(document.getElementById('calculated-student-performance-avg').value);
                             
-                            // 수행평가 평균을 자동으로 계산
-                            const performanceAvg = calculateClassPerformanceAverage();
-                            
-                            if (performanceAvg === 0) {
+                            let classAvgTotal = 0;
+                            let classAvgCount = 0;
+                            for (let i = 1; i <= dropdownPerformanceCounter; i++) {
+                                const classAvgEl = document.getElementById(`dropdown-perf-class-${i}`);
+                                if (classAvgEl && classAvgEl.value) {
+                                    classAvgTotal += parseFloat(classAvgEl.value);
+                                    classAvgCount++;
+                                }
+                            }
+                            if (classAvgCount === 0) {
                                 alert('수행평가 전체 평균을 계산할 수 없습니다. 평균 점수 관리에서 수행평가 영역을 입력해주세요.');
                                 return;
                             }
+                            const performanceAvg = classAvgTotal / classAvgCount;
+                            const calculatedScore = (performanceScore / performanceAvg) * finalAvg;
+                            result = calculatedScore * recognitionRate;
+                        }
                             
                             const calculatedScore = (performanceScore / performanceAvg) * finalAvg;
                             result = calculatedScore * recognitionRate;
