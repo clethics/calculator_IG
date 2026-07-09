@@ -1241,7 +1241,7 @@
                             const calculatedScore = studentPerfScore * (listeningAvg / perfExcludingListeningAvg);
                             result = calculatedScore * recognitionRate;
                         }
-} else if (currentExamType === 'midterm') {
+                    } else if (currentExamType === 'midterm') {
                         if (currentMethod === 'final-score') {
                             const midtermAvg = parseFloat(document.getElementById('midterm-avg').value);
                             const finalScore = parseFloat(document.getElementById('final-score').value);
@@ -1296,10 +1296,6 @@
                                 return;
                             }
                             const performanceAvg = classAvgTotal / classAvgCount;
-                            const calculatedScore = (performanceScore / performanceAvg) * finalAvg;
-                            result = calculatedScore * recognitionRate;
-                        }
-                            
                             const calculatedScore = (performanceScore / performanceAvg) * finalAvg;
                             result = calculatedScore * recognitionRate;
                         }
